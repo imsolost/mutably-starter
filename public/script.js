@@ -59,10 +59,9 @@ const getAllBooks = () => {
 }
 
 const handleDelete = (data) => {
-  console.log('handleDelete got ', data);
-  const id = data._id;
-  const $row = $(`.item-${id}`);
-  $row.remove();
+  const id = data._id
+  const $row = $(`.item-${id}`)
+  $row.remove()
 }
 
 const handleUpdate = (data) => {
