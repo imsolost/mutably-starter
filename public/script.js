@@ -26,6 +26,10 @@ $(document).ready( () => {
     })
   })
 
+  $(document).on('click', function(event) {
+    console.log('what is this?', event.target )
+  })
+
   $(document).on('click', '.edit-btn', function() {
     const id = $(this).data('id')
 
