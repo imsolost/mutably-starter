@@ -7,7 +7,7 @@ $(document).ready( () => {
   $('#new-book-form').on('submit', function(event) {
     event.preventDefault()
     const newData = $(this).serialize()
-    console.log('newData',newData)
+    console.log('newData', newData)
     $(this).trigger('reset')
     $.ajax({
       method: 'POST',
@@ -21,7 +21,7 @@ $(document).ready( () => {
     const id = $(this).data('id')
     $.ajax({
       method: 'DELETE',
-      url: 'http://mutably.herokuapp.com/books/'+id,
+      url: `http://mutably.herokuapp.com/books/${id}`,
       success: handleDelete
     })
   })
@@ -29,22 +29,20 @@ $(document).ready( () => {
   $(document).on('click', '.edit-btn', function() {
     const id = $(this).data('id')
 
-    $('.title-'+id).hide()
-    $('.input-'+id).show()
-
-    $('.edit-'+id).hide()
-    $('.save-'+id).show()
+    $(`.title-${id}`).hide()
+    $(`.input-${id}`).show()
+    $(`.edit-${id}`).hide()
+    $(`.save-${id}`).show()
 
   })
 
   $(document).on('click', '.save-btn', function() {
     const id = $(this).data('id')
 
-    // grab the user's inputted data
-    const updatedTitle = $('.input-'+id+' input').val()
+    const updatedTitle = $(`.input-${id} input`).val()
     $.ajax({
       method: 'PUT',
-      url: 'http://mutably.herokuapp.com/books/'+id,
+      url: `http://mutably.herokuapp.com/books/${id}`,
       data: {title: updatedTitle},
       success: handleUpdate
     })
@@ -62,20 +60,20 @@ const getAllBooks = () => {
 
 const handleDelete = (data) => {
   console.log('handleDelete got ', data);
-  const bookId = data._id;
-  const $row = $('.item-' + bookId);
+  const id = data._id;
+  const $row = $(`.item-${id}`);
   $row.remove();
 }
 
 const handleUpdate = (data) => {
   const id = data._id;
 
-  $('.title-'+id).html('&nbsp;'+data.title)
+  $(`.title-${id}`).html(`&nbsp;${data.title}`)
 
-  $('.title-'+id).show()
-  $('.input-'+id).hide()
-  $('.edit-'+id).show()
-  $('.save-'+id).hide()
+  $(`.title-${id}`).show()
+  $(`.input-${id}`).hide()
+  $(`.edit-${id}`).show()
+  $(`.save-${id}`).hide()
 }
 
 const displayBooks = (data) => {
