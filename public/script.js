@@ -11,7 +11,7 @@ $(document).ready( () => {
     $(this).trigger('reset')
     $.ajax({
       method: 'POST',
-      url: 'http://mutably.herokuapp.com/books/',
+      url: 'https://mutably.herokuapp.com/books/',
       data: newData,
       success: getAllBooks
     })
@@ -21,7 +21,7 @@ $(document).ready( () => {
     const id = $(this).data('id')
     $.ajax({
       method: 'DELETE',
-      url: `http://mutably.herokuapp.com/books/${id}`,
+      url: `https://mutably.herokuapp.com/books/${id}`,
       success: handleDelete
     })
   })
@@ -46,7 +46,7 @@ $(document).ready( () => {
     const updatedTitle = $(`.input-${id} input`).val()
     $.ajax({
       method: 'PUT',
-      url: `http://mutably.herokuapp.com/books/${id}`,
+      url: `https://mutably.herokuapp.com/books/${id}`,
       data: {title: updatedTitle},
       success: handleUpdate
     })
@@ -57,7 +57,7 @@ const getAllBooks = () => {
   $('.list-group').html('')
   $.ajax({
     method: 'GET',
-    url: 'http://mutably.herokuapp.com/books',
+    url: 'https://mutably.herokuapp.com/books',
     success: displayBooks
   })
 }
